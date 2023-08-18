@@ -9,7 +9,7 @@ export default {
       },
       colors: {
         tomato: '#F87070',
-        turquoise: '#70F3F8',
+        cyan: '#70F3F8',
         pink: '#70F3F8',
         grey: '#D7E0FF',
         'light-grey': '#EFF1FA',
