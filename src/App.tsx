@@ -22,14 +22,17 @@ function App() {
     setMsLeft(presets[activeMode])
   }
 
-  useEffect(() => {
+  const handleTime = () => {
     if (!isRunning) {
       return
     }
 
     const intervalId = setInterval(() => setMsLeft((ms) => ms - 10), 10)
     return () => clearInterval(intervalId)
-  }, [isRunning])
+  }
+
+  useEffect(resetTimer, [presets, activeMode])
+  useEffect(handleTime, [isRunning])
 
   useEffect(() => {
     if (!msLeft) {
@@ -38,16 +41,18 @@ function App() {
   }, [msLeft])
 
   const onTimerClick = () => {
-    if (!msLeft) {
-      resetTimer()
+    if (msLeft) {
+      setIsRunning(!isRunning)
       return
     }
-    setIsRunning(!isRunning)
+    resetTimer()
   }
 
   const handleModeChange = (mode: Mode) => {
+    if (mode === activeMode) {
+      resetTimer()
+    }
     setActiveMode(mode)
-    resetTimer()
   }
 
   return (
