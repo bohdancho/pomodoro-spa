@@ -40,8 +40,8 @@ export default {
         48: '48px',
       },
       borderRadius: {
-        10: '10px',
-        24: '24px',
+        input: '10px',
+        button: '26px',
       },
     },
   },
