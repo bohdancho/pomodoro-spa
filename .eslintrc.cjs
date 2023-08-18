@@ -5,6 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
+    'plugin:import/typescript',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'eslint-config-prettier',
@@ -15,11 +16,12 @@ module.exports = {
   settings: {
     react: {
       version: 'detect',
-      'import/resolver': {
-        node: {
-          paths: ['src'],
-          extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        },
+    },
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+        extensions: ['.ts', '.tsx'],
       },
     },
   },
