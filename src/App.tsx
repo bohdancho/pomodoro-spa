@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react'
-import { Mode, Presets } from 'types'
 import './App.tw.css'
+import { Mode, Presets } from './types'
+import { MINUTE_IN_MS, getFormatedTime } from './utils'
 
 // const defaultTheme: Theme = { color: 'tomato', font: 'kumbh-sans' }
-const defaultPresets: Presets = { pomodoro: 15000, 'short-break': 3000, 'long-break': 5000 }
+const defaultPresets: Presets = {
+  pomodoro: MINUTE_IN_MS * 25,
+  'short-break': MINUTE_IN_MS * 3,
+  'long-break': MINUTE_IN_MS * 5,
+}
 
 function App() {
   // const [theme, setTheme] = useState<Theme>(defaultTheme)
@@ -16,8 +21,6 @@ function App() {
     setIsRunning(false)
     setMsLeft(presets[activeMode])
   }
-
-  useEffect(resetTimer, [presets, activeMode])
 
   useEffect(() => {
     if (!isRunning) {
@@ -35,19 +38,16 @@ function App() {
   }, [msLeft])
 
   const onTimerClick = () => {
-    if (msLeft) {
-      setIsRunning(!isRunning)
-      return
-    }
-    resetTimer()
-  }
-
-  const handleModeChange = (mode: Mode) => {
-    if (mode === activeMode) {
+    if (!msLeft) {
       resetTimer()
       return
     }
+    setIsRunning(!isRunning)
+  }
+
+  const handleModeChange = (mode: Mode) => {
     setActiveMode(mode)
+    resetTimer()
   }
 
   return (
@@ -64,7 +64,7 @@ function App() {
           long break
         </button>
       </div>
-      <div onClick={onTimerClick}>{msLeft}</div>
+      <div onClick={onTimerClick}>{getFormatedTime(msLeft)}</div>
       <div>settings</div>
     </div>
   )
