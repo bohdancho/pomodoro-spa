@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Mode, Presets } from 'types'
 import './App.tw.css'
+import { Settings } from './components'
 import { useTimer } from './hooks'
-import { Mode, Presets } from './types'
 import { MINUTE_IN_MS, getFormatedTime } from './utils'
 
 // const defaultTheme: Theme = { color: 'tomato', font: 'kumbh-sans' }
@@ -14,10 +15,10 @@ const defaultPresets: Presets = {
 function App() {
   // const [theme, setTheme] = useState<Theme>(defaultTheme)
   const [activeMode, setActiveMode] = useState<Mode>('pomodoro')
-  const [presets] = useState(defaultPresets)
+  const [presets, setPresets] = useState(defaultPresets)
 
-  const { msLeft, setTotalTime, resetTimer, triggerAction } = useTimer(presets[activeMode])
-  useEffect(() => setTotalTime(presets[activeMode]), [presets, activeMode, setTotalTime])
+  const { msLeft, setTotalMs: setTotalMs, resetTimer, triggerAction } = useTimer(presets[activeMode])
+  useEffect(() => setTotalMs(presets[activeMode]), [presets, activeMode, setTotalMs])
 
   const handleModeChange = (mode: Mode) => {
     if (mode === activeMode) {
@@ -41,7 +42,7 @@ function App() {
         </button>
       </div>
       <div onClick={triggerAction}>{getFormatedTime(msLeft)}</div>
-      <div>settings</div>
+      <Settings presets={presets} setPresets={setPresets}></Settings>
     </div>
   )
 }

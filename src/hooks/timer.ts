@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-export function useTimer(initTotalTime: number) {
+export function useTimer(initTotalMs: number) {
   const [isRunning, setIsRunning] = useState(false)
-  const [msLeft, setMsLeft] = useState(initTotalTime)
-  const [totalTime, setTotalTime] = useState(initTotalTime)
+  const [msLeft, setMsLeft] = useState(initTotalMs)
+  const [totalMs, setTotalMs] = useState(initTotalMs)
 
   const resetTimer = () => {
     setIsRunning(false)
-    setMsLeft(totalTime)
+    setMsLeft(totalMs)
   }
 
   const handleTime = () => {
@@ -28,7 +28,7 @@ export function useTimer(initTotalTime: number) {
     resetTimer()
   }
 
-  useEffect(resetTimer, [totalTime])
+  useEffect(resetTimer, [totalMs])
   useEffect(handleTime, [isRunning])
   useEffect(() => {
     if (!msLeft) {
@@ -36,5 +36,5 @@ export function useTimer(initTotalTime: number) {
     }
   }, [msLeft])
 
-  return { msLeft, setTotalTime, resetTimer, triggerAction }
+  return { msLeft, setTotalMs: setTotalMs, resetTimer, triggerAction }
 }
