@@ -27,7 +27,8 @@ function App() {
       return
     }
 
-    const intervalId = setInterval(() => setMsLeft((ms) => ms - 10), 10)
+    const STEP_MS = 10
+    const intervalId = setInterval(() => setMsLeft((ms) => ms - STEP_MS), STEP_MS)
     return () => clearInterval(intervalId)
   }
 
