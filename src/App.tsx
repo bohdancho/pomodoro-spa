@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.tw.css'
+import { useTimer } from './hooks'
 import { Mode, Presets } from './types'
 import { MINUTE_IN_MS, getFormatedTime } from './utils'
 
@@ -14,40 +15,9 @@ function App() {
   // const [theme, setTheme] = useState<Theme>(defaultTheme)
   const [activeMode, setActiveMode] = useState<Mode>('pomodoro')
   const [presets] = useState(defaultPresets)
-  const [isRunning, setIsRunning] = useState(false)
-  const [msLeft, setMsLeft] = useState<number>(defaultPresets[activeMode])
 
-  const resetTimer = () => {
-    setIsRunning(false)
-    setMsLeft(presets[activeMode])
-  }
-
-  const handleTime = () => {
-    if (!isRunning) {
-      return
-    }
-
-    const STEP_MS = 10
-    const intervalId = setInterval(() => setMsLeft((ms) => ms - STEP_MS), STEP_MS)
-    return () => clearInterval(intervalId)
-  }
-
-  useEffect(resetTimer, [presets, activeMode])
-  useEffect(handleTime, [isRunning])
-
-  useEffect(() => {
-    if (!msLeft) {
-      setIsRunning(false)
-    }
-  }, [msLeft])
-
-  const onTimerClick = () => {
-    if (msLeft) {
-      setIsRunning(!isRunning)
-      return
-    }
-    resetTimer()
-  }
+  const { msLeft, setTotalTime, resetTimer, triggerAction } = useTimer(presets[activeMode])
+  useEffect(() => setTotalTime(presets[activeMode]), [presets, activeMode, setTotalTime])
 
   const handleModeChange = (mode: Mode) => {
     if (mode === activeMode) {
@@ -70,7 +40,7 @@ function App() {
           long break
         </button>
       </div>
-      <div onClick={onTimerClick}>{getFormatedTime(msLeft)}</div>
+      <div onClick={triggerAction}>{getFormatedTime(msLeft)}</div>
       <div>settings</div>
     </div>
   )
