@@ -16,7 +16,7 @@ export function useTimer(initTotalMs: number) {
     }
 
     const STEP_MS = 10
-    const intervalId = setInterval(() => setMsLeft((ms) => ms - STEP_MS), STEP_MS)
+    const intervalId = setInterval(() => setMsLeft((ms) => ms - STEP_MS * 2000), STEP_MS)
     return () => clearInterval(intervalId)
   }
 
