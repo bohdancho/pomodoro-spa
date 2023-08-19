@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Mode, Presets } from 'types'
 import './App.tw.css'
-import { Settings } from './components'
+import { PresetsSettings } from './components'
 import { useTimer } from './hooks'
+import { Mode, Presets } from './types'
 import { MINUTE_IN_MS, getFormatedTime, getKeys } from './utils'
 
 // const defaultTheme: Theme = { color: 'tomato', font: 'kumbh-sans' }
@@ -42,7 +42,7 @@ function App() {
         ))}
       </div>
       <div onClick={triggerAction}>{getFormatedTime(msLeft)}</div>
-      <Settings presets={presets} setPresets={setPresets}></Settings>
+      <PresetsSettings presets={presets} setPresets={setPresets}></PresetsSettings>
     </div>
   )
 }
