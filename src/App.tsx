@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
-import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../tailwind.config.js'
 import './App.tw.css'
-import { Settings } from './components'
+import { Settings, Timer } from './components'
 import { useTimer } from './hooks'
 import { Color, CustomCSS, Font, Mode, Presets, Theme } from './models'
-import { MINUTE_IN_MS, getFormatedTime, getKeys } from './utils'
+import { MINUTE_IN_MS, getKeys } from './utils'
 
 const defaultTheme: Theme = { color: Color.tomato, font: Font.kumbhSans }
 const defaultPresets: Presets = {
@@ -14,14 +12,12 @@ const defaultPresets: Presets = {
   'long-break': MINUTE_IN_MS * 5,
 }
 
-const fullTailwindConfig = resolveConfig(tailwindConfig)
-
 function App() {
   const [theme, setTheme] = useState<Theme>(defaultTheme)
   const [activeMode, setActiveMode] = useState<Mode>('pomodoro')
   const [presets, setPresets] = useState(defaultPresets)
 
-  const { msLeft, setTotalMs: setTotalMs, resetTimer, triggerAction } = useTimer(presets[activeMode])
+  const { msLeft, isRunning, setTotalMs, resetTimer, triggerAction } = useTimer(presets[activeMode])
   useEffect(() => setTotalMs(presets[activeMode]), [presets, activeMode, setTotalMs])
 
   const handleModeChange = (mode: Mode) => {
@@ -34,10 +30,10 @@ function App() {
   return (
     <div
       style={{ '--color-primary': theme.color, fontFamily: theme.font } as CustomCSS}
-      className='flex flex-col items-center justify-center w-screen h-screen gap-24 text-white text-h2 bg-slate-800'
+      className='flex flex-col items-center justify-center w-screen h-screen gap-24 px-24 pt-32 pb-48 text-blue-100 bg-slate-800'
     >
-      <h1>pomodoro</h1>
-      <div className='flex gap-16'>
+      <h1 className='mb-48 text-[32px]'>pomodoro</h1>
+      <div className='flex gap-16 mb-48'>
         {getKeys(presets).map((mode) => (
           <button
             type='button'
@@ -49,8 +45,18 @@ function App() {
           </button>
         ))}
       </div>
-      <div onClick={triggerAction}>{getFormatedTime(msLeft)}</div>
-      <Settings theme={theme} setTheme={setTheme} presets={presets} setPresets={setPresets}></Settings>
+      <div onClick={triggerAction}>
+        {
+          <Timer
+            msLeft={msLeft}
+            isRunning={isRunning}
+            timeFraction={1 - Math.round((msLeft / presets[activeMode]) * 1000) / 1000}
+          ></Timer>
+        }
+      </div>
+      <div className='mt-auto'>
+        <Settings theme={theme} setTheme={setTheme} presets={presets} setPresets={setPresets}></Settings>
+      </div>
     </div>
   )
 }
