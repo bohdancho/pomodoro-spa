@@ -9,19 +9,11 @@ export default {
       },
       colors: {
         primary: 'var(--color-primary)',
-        tomato: '#F87070',
-        cyan: '#70F3F8',
-        pink: '#D881F8',
         grey: '#D7E0FF',
         'light-grey': '#EFF1FA',
         'dark-blue': '#1E213F',
         'very-dark-blue': '#161932',
         white: '#FFFFFF',
-      },
-      fontFamily: {
-        'kumbh-sans': ['Kumbh Sans', 'sans-serif'],
-        'roboto-slab': ['Roboto Slab', 'serif'],
-        'space-mono': ['Space Mono', 'sans-serif'],
       },
       fontSize: {
         h1: ['120px', { lineHeight: '120px', letterSpacing: '-5px', fontWeight: 700 }],

@@ -31,18 +31,9 @@ function App() {
     setActiveMode(mode)
   }
 
-  const [themeStyles, setThemeStyles] = useState<CustomCSS | undefined>(undefined)
-  useEffect(() => {
-    const primaryColor = fullTailwindConfig.theme?.colors?.[theme.color]
-    if (typeof primaryColor !== 'string') {
-      throw new Error('TailwindCSS: Invalid colors in config')
-    }
-    setThemeStyles({ '--color-primary': primaryColor, fontFamily: theme.font })
-  }, [theme])
-
   return (
     <div
-      style={themeStyles}
+      style={{ '--color-primary': theme.color, fontFamily: theme.font } as CustomCSS}
       className='flex flex-col items-center justify-center w-screen h-screen gap-24 text-white text-h2 bg-slate-800'
     >
       <h1>pomodoro</h1>
