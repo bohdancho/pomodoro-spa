@@ -16,7 +16,7 @@ export default {
         white: '#FFFFFF',
       },
       fontSize: {
-        h1: ['120px', { lineHeight: '120px', letterSpacing: '-5px', fontWeight: 700 }],
+        h1: ['100px', { lineHeight: '120px', letterSpacing: '-5px', fontWeight: 700 }],
         h2: ['28px', { lineHeight: '34px', fontWeight: 700 }],
         h3: ['16px', { lineHeight: '19px', letterSpacing: '15px', fontWeight: 700 }],
         h4: ['13px', { lineHeight: '16px', letterSpacing: '5px', fontWeight: 700 }],

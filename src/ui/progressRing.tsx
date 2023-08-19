@@ -48,7 +48,8 @@ export const ProgressRing: FunctionComponent<ProgressBarProps> = ({ stroke, prog
 }
 
 function getParams(radius: number, stroke: number, progressFraction: number): ComputableParams {
-  const normalizedRadius = radius - stroke * 2
+  // const normalizedRadius = radius - stroke * 2
+  const normalizedRadius = radius - stroke * 0.5
   const circumference = normalizedRadius * 2 * Math.PI
   const strokeDashoffset = circumference - progressFraction * circumference
 
