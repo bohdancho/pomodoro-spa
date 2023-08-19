@@ -16,7 +16,7 @@ export const ProgressRing: FunctionComponent<ProgressBarProps> = ({ stroke, prog
   const [radius, setRadius] = useState<number | null>(null)
   const [computableParams, setComputableParams] = useState<ComputableParams | null>(null)
 
-  useLayoutEffect(() => {
+  const getRadiusFromWrapper = () => {
     const wrapperElem = wrapperRef.current
     if (!wrapperElem) {
       return
@@ -25,7 +25,9 @@ export const ProgressRing: FunctionComponent<ProgressBarProps> = ({ stroke, prog
     const _radius = wrapperElem.clientHeight / 2
     setRadius(_radius)
     setComputableParams(getParams(_radius, stroke, progressFraction))
-  }, [progressFraction, stroke, wrapperRef])
+  }
+
+  useLayoutEffect(getRadiusFromWrapper, [progressFraction, stroke, wrapperRef])
 
   return (
     <div className='w-full h-full' ref={wrapperRef}>

@@ -9,9 +9,6 @@ interface TimerProps {
 }
 
 export const Timer: FunctionComponent<TimerProps> = ({ msLeft, timeFraction, isRunning }) => {
-  // const circle = useRef(null)
-  // useLayoutEffect(() => console.log(circle.current.length), [])
-
   const getActionText = () => {
     if (!msLeft) {
       return 'restart'
