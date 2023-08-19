@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.tw.css'
 import { PresetsSettings } from './components'
 import { useTimer } from './hooks'
-import { Mode, Presets } from './types'
+import { Mode, Presets } from './models'
 import { MINUTE_IN_MS, getFormatedTime, getKeys } from './utils'
 
 // const defaultTheme: Theme = { color: 'tomato', font: 'kumbh-sans' }
