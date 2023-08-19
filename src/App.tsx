@@ -40,15 +40,6 @@ function App() {
             {mode}
           </button>
         ))}
-        {/* <button className='p-4 border border-gray border-1' onClick={() => handleModeChange('pomodoro')}>
-          pomodoro
-        </button>
-        <button className='p-4 border border-gray border-1' onClick={() => handleModeChange('short-break')}>
-          short break
-        </button>
-        <button className='p-4 border border-gray border-1' onClick={() => handleModeChange('long-break')}>
-          long break
-        </button> */}
       </div>
       <div onClick={triggerAction}>{getFormatedTime(msLeft)}</div>
       <Settings presets={presets} setPresets={setPresets}></Settings>
