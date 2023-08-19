@@ -36,5 +36,5 @@ export function useTimer(initTotalMs: number) {
     }
   }, [msLeft])
 
-  return { msLeft, setTotalMs: setTotalMs, resetTimer, triggerAction }
+  return { msLeft, setTotalMs, resetTimer, triggerAction }
 }

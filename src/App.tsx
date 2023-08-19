@@ -3,7 +3,7 @@ import { Mode, Presets } from 'types'
 import './App.tw.css'
 import { Settings } from './components'
 import { useTimer } from './hooks'
-import { MINUTE_IN_MS, getFormatedTime } from './utils'
+import { MINUTE_IN_MS, getFormatedTime, getKeys } from './utils'
 
 // const defaultTheme: Theme = { color: 'tomato', font: 'kumbh-sans' }
 const defaultPresets: Presets = {
@@ -31,7 +31,16 @@ function App() {
     <div className='flex flex-col items-center justify-center w-screen h-screen gap-24 text-white text-h2 bg-slate-800'>
       <h1>pomodoro</h1>
       <div className='flex gap-16'>
-        <button className='p-4 border border-gray border-1' onClick={() => handleModeChange('pomodoro')}>
+        {getKeys(presets).map((mode) => (
+          <button
+            key={mode}
+            className={`${activeMode === mode ? 'text-cyan border-cyan' : 'border-gray'} p-4 border border-1`}
+            onClick={() => handleModeChange(mode)}
+          >
+            {mode}
+          </button>
+        ))}
+        {/* <button className='p-4 border border-gray border-1' onClick={() => handleModeChange('pomodoro')}>
           pomodoro
         </button>
         <button className='p-4 border border-gray border-1' onClick={() => handleModeChange('short-break')}>
@@ -39,7 +48,7 @@ function App() {
         </button>
         <button className='p-4 border border-gray border-1' onClick={() => handleModeChange('long-break')}>
           long break
-        </button>
+        </button> */}
       </div>
       <div onClick={triggerAction}>{getFormatedTime(msLeft)}</div>
       <Settings presets={presets} setPresets={setPresets}></Settings>
