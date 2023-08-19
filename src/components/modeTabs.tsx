@@ -10,19 +10,23 @@ interface ModeTabsProps {
 
 export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode, handleModeChange }) => {
   const activeButtonRef = useRef<HTMLButtonElement | null>()
-  const [activeLayerLeft, setActiveLayerLeft] = useState(0)
-  const [activeLayerRight, setActiveLayerRight] = useState(0)
+  const [activeLayerLeft, setActiveLayerLeft] = useState<number | null>(null)
+  const [activeLayerRight, setActiveLayerRight] = useState<number | null>(null)
 
   useLayoutEffect(() => {
-    // setTimeout(() => {
-    const buttonRect = activeButtonRef.current?.getBoundingClientRect()
-    const parentRect = activeButtonRef.current?.parentElement?.getBoundingClientRect()
+    console.log('rerendered')
+  })
 
-    if (buttonRect && parentRect) {
-      setActiveLayerLeft(buttonRect.left - parentRect.left)
-      setActiveLayerRight(parentRect.right - buttonRect.right)
-    }
-    // }, 100)
+  useLayoutEffect(() => {
+    document.fonts.ready.then(() => {
+      const buttonRect = activeButtonRef.current?.getBoundingClientRect()
+      const parentRect = activeButtonRef.current?.parentElement?.getBoundingClientRect()
+
+      if (buttonRect && parentRect) {
+        setActiveLayerLeft(buttonRect.left - parentRect.left)
+        setActiveLayerRight(parentRect.right - buttonRect.right)
+      }
+    })
   }, [activeMode])
 
   const buttonPaddings = 'px-24 py-[18px]'
@@ -53,10 +57,12 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
             </div>
           ))}
         </div>
-        <div
-          className='absolute h-full bg-primary top-0 rounded-full pointer-events-none duration-1000 transition-[left,right] transform'
-          style={{ left: activeLayerLeft, right: activeLayerRight }}
-        ></div>
+        {activeLayerLeft !== null && activeLayerRight !== null ? (
+          <div
+            className='absolute h-full bg-primary top-0 rounded-full pointer-events-none duration-1000 transition-[left,right] transform'
+            style={{ left: activeLayerLeft, right: activeLayerRight }}
+          ></div>
+        ) : null}
       </div>
     </div>
   )
