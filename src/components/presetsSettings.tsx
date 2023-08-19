@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, FunctionComponent, SetStateAction, useState } from 'react'
+import { ChangeEvent, Dispatch, FunctionComponent, SetStateAction } from 'react'
 import { Mode, Presets } from '../models'
 import { MINUTE_IN_MS, getKeys, getMinutes, isPositiveInteger } from '../utils'
 
@@ -8,18 +8,11 @@ interface PresetsSettingsProps {
 }
 
 export const PresetsSettings: FunctionComponent<PresetsSettingsProps> = ({ presets, setPresets }) => {
-  const [updatedPresets, setUpdatedPresets] = useState(presets)
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>, mode: Mode) => {
     const value = e.target.value
     if (isPositiveInteger(value)) {
-      setUpdatedPresets({ ...presets, [mode]: Number(value) * MINUTE_IN_MS })
+      setPresets({ ...presets, [mode]: Number(value) * MINUTE_IN_MS })
     }
-  }
-
-  const handleSaveClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    setPresets(updatedPresets)
   }
 
   return (
@@ -30,12 +23,11 @@ export const PresetsSettings: FunctionComponent<PresetsSettingsProps> = ({ prese
           <input
             type='text'
             className='text-black'
-            value={getMinutes(updatedPresets[mode])}
+            value={getMinutes(presets[mode])}
             onChange={(e) => handleChange(e, mode)}
           />
         </div>
       ))}
-      <button onClick={handleSaveClick}>apply</button>
     </form>
   )
 }

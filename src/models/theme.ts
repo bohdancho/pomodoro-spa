@@ -1,4 +1,16 @@
+export enum Color {
+  tomato = 'tomato',
+  cyan = 'cyan',
+  pink = 'pink',
+}
+
+export enum Font {
+  kumbhSans = 'kumbh-sans',
+  robotoSlab = 'roboto-slab',
+  spaceMono = 'space-mono',
+}
+
 export interface Theme {
-  color: 'tomato' | 'cyan' | 'pink'
-  font: 'kumbh-sans' | 'roboto-slab' | 'space-mono'
+  color: Color
+  font: Font
 }
