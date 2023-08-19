@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 
 export function useTimer(initTotalMs: number) {
   const [isRunning, setIsRunning] = useState(false)
@@ -28,7 +28,7 @@ export function useTimer(initTotalMs: number) {
     resetTimer()
   }
 
-  useEffect(resetTimer, [totalMs])
+  useLayoutEffect(resetTimer, [totalMs])
   useEffect(handleTime, [isRunning])
   useEffect(() => {
     if (!msLeft) {

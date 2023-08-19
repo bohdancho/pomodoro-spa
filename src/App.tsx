@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.tw.css'
 import { ModeTabs, Settings, Timer } from './components'
 import { useTimer } from './hooks'
@@ -18,13 +18,13 @@ function App() {
   const [presets, setPresets] = useState(defaultPresets)
 
   const { msLeft, isRunning, setTotalMs, resetTimer, triggerAction } = useTimer(presets[activeMode])
-  useEffect(() => setTotalMs(presets[activeMode]), [presets, activeMode, setTotalMs])
 
   const handleModeChange = (mode: Mode) => {
     if (mode === activeMode) {
       resetTimer()
     }
     setActiveMode(mode)
+    setTotalMs(presets[mode])
   }
 
   return (
