@@ -1,4 +1,3 @@
-export * from './presetsSettings'
+export * from './modeTabs'
 export * from './settings'
-export * from './themeSettings'
 export * from './timer'

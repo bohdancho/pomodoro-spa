@@ -32,10 +32,6 @@ export default {
         40: '40px',
         48: '48px',
       },
-      borderRadius: {
-        input: '10px',
-        button: '26px',
-      },
       boxShadow: {
         DEFAULT: '50px 50px 100px 0px #121530, -50px -50px 100px 0px #272C5A',
       },

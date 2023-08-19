@@ -1,6 +1,6 @@
 import { Dispatch, FunctionComponent, SetStateAction } from 'react'
-import { Color, Font, Theme } from '../models'
-import { getKeys } from '../utils'
+import { Color, Font, Theme } from '../../models'
+import { getKeys } from '../../utils'
 
 interface ThemeSettingsProps {
   theme: Theme

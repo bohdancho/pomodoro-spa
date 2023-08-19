@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import './App.tw.css'
-import { Settings, Timer } from './components'
+import { ModeTabs, Settings, Timer } from './components'
 import { useTimer } from './hooks'
 import { Color, CustomCSS, Font, Mode, Presets, Theme } from './models'
-import { MINUTE_IN_MS, getKeys } from './utils'
+import { MINUTE_IN_MS } from './utils'
 
 const defaultTheme: Theme = { color: Color.tomato, font: Font.kumbhSans }
 const defaultPresets: Presets = {
@@ -30,21 +30,10 @@ function App() {
   return (
     <div
       style={{ '--color-primary': theme.color, fontFamily: theme.font } as CustomCSS}
-      className='flex flex-col items-center justify-center w-screen h-screen gap-24 px-24 pt-32 pb-48 text-blue-100 bg-slate-800'
+      className='flex flex-col items-center justify-center w-screen h-screen gap-48 px-24 pt-32 pb-48 text-blue-100 bg-slate-800'
     >
-      <h1 className='mb-48 text-[32px]'>pomodoro</h1>
-      <div className='flex gap-16 mb-48'>
-        {getKeys(presets).map((mode) => (
-          <button
-            type='button'
-            key={mode}
-            className={`${activeMode === mode ? 'text-primary border-primary' : 'border-gray'} p-4 border border-1`}
-            onClick={() => handleModeChange(mode)}
-          >
-            {mode}
-          </button>
-        ))}
-      </div>
+      <h1 className='text-[32px]'>pomodoro</h1>
+      <ModeTabs presets={presets} activeMode={activeMode} handleModeChange={handleModeChange}></ModeTabs>
       <div onClick={triggerAction}>
         {
           <Timer

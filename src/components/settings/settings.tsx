@@ -1,6 +1,6 @@
 import { Dispatch, FunctionComponent, SetStateAction, useReducer, useState } from 'react'
-import { PresetsSettings, ThemeSettings } from '.'
-import { Presets, Theme } from '../models'
+import { PresetsSettings, ThemeSettings } from '..'
+import { Presets, Theme } from '../../models'
 
 interface SettingsProps {
   theme: Theme

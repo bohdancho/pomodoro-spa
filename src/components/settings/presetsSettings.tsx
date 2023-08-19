@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, FunctionComponent, SetStateAction } from 'react'
-import { Mode, Presets } from '../models'
-import { MINUTE_IN_MS, getKeys, getMinutes, isPositiveInteger } from '../utils'
+import { Mode, Presets } from '../../models'
+import { MINUTE_IN_MS, getKeys, getMinutes, isPositiveInteger } from '../../utils'
 
 interface PresetsSettingsProps {
   presets: Presets
