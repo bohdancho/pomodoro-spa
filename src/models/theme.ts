@@ -5,9 +5,9 @@ export enum Color {
 }
 
 export enum Font {
-  kumbhSans = 'kumbh-sans',
-  robotoSlab = 'roboto-slab',
-  spaceMono = 'space-mono',
+  kumbhSans = 'Kumbh Sans',
+  robotoSlab = 'Roboto Slab',
+  spaceMono = 'Space Mono',
 }
 
 export interface Theme {

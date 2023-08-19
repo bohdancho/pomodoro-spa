@@ -8,9 +8,10 @@ export default {
         lg: '1440px',
       },
       colors: {
+        primary: 'var(--color-primary)',
         tomato: '#F87070',
         cyan: '#70F3F8',
-        pink: '#70F3F8',
+        pink: '#D881F8',
         grey: '#D7E0FF',
         'light-grey': '#EFF1FA',
         'dark-blue': '#1E213F',
