@@ -10,8 +10,7 @@ interface ModeTabsProps {
 
 export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode, handleModeChange }) => {
   const activeButtonRef = useRef<HTMLButtonElement | null>()
-  const [activeLayerLeft, setActiveLayerLeft] = useState<number | null>(null)
-  const [activeLayerRight, setActiveLayerRight] = useState<number | null>(null)
+  const [activeLayerPosition, setActiveLayerPosition] = useState<{ left: number; right: number } | null>(null)
 
   useLayoutEffect(() => {
     document.fonts.ready.then(() => {
@@ -19,8 +18,9 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
       const parentRect = activeButtonRef.current?.parentElement?.getBoundingClientRect()
 
       if (buttonRect && parentRect) {
-        setActiveLayerLeft(buttonRect.left - parentRect.left)
-        setActiveLayerRight(parentRect.right - buttonRect.right)
+        const left = buttonRect.left - parentRect.left
+        const right = parentRect.right - buttonRect.right
+        setActiveLayerPosition({ left, right })
       }
     })
   }, [activeMode])
@@ -43,21 +43,23 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
     <div className='flex p-8 rounded-full select-none bg-slate-900'>
       <div className='relative'>
         {getKeys(presets).map(getButton)}
-        <div
-          className='absolute top-0 z-10 flex pointer-events-none transition-[clip-path] duration-1000'
-          style={{ clipPath: `inset(0 ${activeLayerRight}px 0 ${activeLayerLeft}px)` }}
-        >
-          {getKeys(presets).map((mode) => (
-            <div key={mode} className={buttonPaddings}>
-              <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
+        {activeLayerPosition ? (
+          <>
+            <div
+              className='absolute top-0 z-10 flex pointer-events-none transition-[clip-path] duration-1000'
+              style={{ clipPath: `inset(0 ${activeLayerPosition?.right}px 0 ${activeLayerPosition?.left}px)` }}
+            >
+              {getKeys(presets).map((mode) => (
+                <div key={mode} className={buttonPaddings}>
+                  <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        {activeLayerLeft !== null && activeLayerRight !== null ? (
-          <div
-            className='absolute h-full bg-primary top-0 rounded-full pointer-events-none duration-1000 transition-[left,right] transform'
-            style={{ left: activeLayerLeft, right: activeLayerRight }}
-          ></div>
+            <div
+              className='absolute h-full bg-primary top-0 rounded-full pointer-events-none duration-1000 transition-[left,right] transform'
+              style={{ left: activeLayerPosition.left, right: activeLayerPosition.right }}
+            ></div>
+          </>
         ) : null}
       </div>
     </div>
