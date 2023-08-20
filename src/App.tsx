@@ -29,9 +29,9 @@ function App() {
   useLayoutEffect(() => setTotalMs(presets[activeMode]), [presets, activeMode, setTotalMs])
 
   return (
-    <div
+    <main
       style={{ '--color-primary': theme.color, fontFamily: theme.font } as CustomCSS}
-      className='flex flex-col items-center justify-center w-screen h-screen gap-[48px] pt-[32px] pb-[48px] text-blue-100 bg-slate-800'
+      className='flex flex-col items-center justify-center w-screen h-screen gap-[48px] pt-[5vh] pb-[7vh] text-blue-100 bg-slate-800 md:pt-[7vh] md:pb-[10vh] md:gap-[7vh]'
     >
       <h1 className='text-[32px]'>pomodoro</h1>
       <ModeTabs presets={presets} activeMode={activeMode} handleModeChange={handleModeChange}></ModeTabs>
@@ -47,7 +47,7 @@ function App() {
       <div className='mt-auto'>
         <Settings theme={theme} setTheme={setTheme} presets={presets} setPresets={setPresets}></Settings>
       </div>
-    </div>
+    </main>
   )
 }
 

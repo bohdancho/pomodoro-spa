@@ -36,11 +36,13 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
         onClick={overlayClickHandler}
         className={`${
           isVisible ? '' : 'opacity-0 pointer-events-none'
-        } fixed inset-0 z-50 flex items-center px-[24px] backdrop-brightness-50 transition-opacity duration-200`}
+        } fixed inset-0 z-50 flex items-center px-[24px] md:px-[40px] backdrop-brightness-50 transition-opacity duration-200`}
       >
-        <form className='w-full rounded-[15px] bg-white text-slate-900'>
-          <h2 className='pt-[24px] pl-[24px] text-xl border-b pb-[28px] border-neutral-200'>Settings</h2>
-          <div className='px-[24px]'>
+        <form className='w-full max-w-[400px] md:max-w-[540px] mx-auto rounded-[15px] bg-white text-slate-900'>
+          <h2 className='pt-[24px] px-[24px] pb-[28px] md:pt-[34px] md:pb-[31px] md:px-[40px] text-xl md:text-[28px] border-b border-neutral-200'>
+            Settings
+          </h2>
+          <div className='px-[24px] md:px-[40px]'>
             <PresetsSettings presets={updatedPresets} setPresets={setUpdatedPresets}></PresetsSettings>
             <ThemeSettings theme={updatedTheme} setTheme={setUpdatedTheme}></ThemeSettings>
           </div>

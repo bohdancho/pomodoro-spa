@@ -34,7 +34,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
     document.fonts.ready.then(handleActiveLayer)
   }, [activeMode])
 
-  const buttonStyles = 'text-[13px] w-1/3 text-center py-[16px]'
+  const buttonStyles = 'text-[13px] w-1/3 text-center py-[16px] md:text-sm md:py-[18px]'
 
   const getButton = (mode: Mode) => (
     <button
@@ -44,7 +44,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
       className={buttonStyles}
       onClick={() => handleModeChange(mode)}
     >
-      <div className='text-blue-100'>{mode}</div>
+      <div className='text-blue-100/80'>{mode}</div>
     </button>
   )
 
@@ -72,7 +72,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
 
   return (
     <div className='w-full px-[24px]'>
-      <div className='mx-auto px-[6px] py-[8px] max-w-[373px] rounded-full select-none bg-slate-900 whitespace-nowrap'>
+      <div className='mx-auto px-[6px] py-[8px] max-w-[373px] rounded-full select-none bg-slate-900 whitespace-nowrap md:px-[8px] md:max-w-[390px]'>
         <div className='relative'>
           {getKeys(presets).map(getButton)}
           {activeLayerPosition ? (

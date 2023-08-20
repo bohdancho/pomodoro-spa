@@ -17,14 +17,16 @@ export const PresetsSettings: FunctionComponent<PresetsSettingsProps> = ({ prese
 
   return (
     <div className='py-[24px] border-b border-neutral-200'>
-      <h3 className='text-center uppercase text-[12px] tracking-[4px] mb-[16px]'>time (minutes)</h3>
-      <div className='flex flex-col gap-[8px]'>
+      <h3 className='text-center md:text-left uppercase text-[12px] md:text-[13px] tracking-[4px] mb-[16px] md:mb-[26px]'>
+        time (minutes)
+      </h3>
+      <div className='flex flex-col gap-[8px] md:flex-row md:gap-[20px]'>
         {getKeys(presets).map((mode) => (
-          <label className='flex items-center justify-between' key={mode}>
-            <span className='text-sm text-slate-400'>{mode.replace('-', ' ')}</span>
+          <label className='flex items-center justify-between md:flex-col md:items-start' key={mode}>
+            <span className='md:mb-[10px] text-sm md:text-xs text-slate-400'>{mode.replace('-', ' ')}</span>
             <input
-              type='text'
-              className='w-[140px] bg-slate-100 rounded-[10px] text-black px-[16px] pt-[12px] pb-[10px] text-[14px]'
+              type='numbers'
+              className='w-[140px] bg-slate-100 rounded-[10px] text-black px-[16px] pt-[12px] pb-[10px] md:pt-[11px] md:pb-[14px] text-sm'
               value={getMinutes(presets[mode])}
               onChange={(e) => handleChange(e, mode)}
             ></input>

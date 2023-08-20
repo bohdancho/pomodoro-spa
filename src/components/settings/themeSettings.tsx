@@ -24,8 +24,8 @@ const getFontIcon = (font: Font) => {
 export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, setTheme }) => {
   return (
     <>
-      <div className='py-[24px] border-b border-neutral-200'>
-        <h3 className='text-center uppercase text-[12px] tracking-[4px] mb-[16px]'>font</h3>
+      <div className='py-[24px] border-b border-neutral-200 md:flex md:justify-between items-center'>
+        <h3 className='text-center uppercase text-[12px] md:text-[13px] tracking-[4px] mb-[16px] md:mb-0'>font</h3>
         <div className='flex justify-center gap-[16px]'>
           {Object.values(Font).map((font) => (
             <label
@@ -50,8 +50,8 @@ export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, se
           ))}
         </div>
       </div>
-      <div className='pt-[24px]'>
-        <h3 className='text-center uppercase text-[12px] tracking-[4px] mb-[16px]'>color</h3>
+      <div className='pt-[24px] md:flex md:justify-between items-center'>
+        <h3 className='text-center uppercase text-[12px] md:text-[13px] tracking-[4px] mb-[16px] md:mb-0'>color</h3>
         <div className='flex justify-center gap-[16px]'>
           {Object.values(Color).map((color) => (
             <label

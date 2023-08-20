@@ -17,8 +17,8 @@ export default {
   theme: {
     extend: {
       screens: {
-        md: '1024px',
-        lg: '1440px',
+        md: '640px', // also change useBreakpoints.ts
+        lg: '1024px',
       },
       colors: {
         primary: 'var(--color-primary)',
