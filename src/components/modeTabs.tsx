@@ -39,26 +39,34 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
     </button>
   )
 
+  const getTextMask = ({ left, right }: { left: number; right: number }) => (
+    <div
+      className='absolute top-0 z-10 flex pointer-events-none transition-[clip-path] duration-1000'
+      style={{ clipPath: `inset(0 ${right}px 0 ${left}px)` }}
+    >
+      {getKeys(presets).map((mode) => (
+        <div key={mode} className={buttonPaddings}>
+          <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
+        </div>
+      ))}
+    </div>
+  )
+
+  const getActiveLayer = ({ left, right }: { left: number; right: number }) => (
+    <div
+      className='absolute h-full bg-primary top-0 rounded-full pointer-events-none duration-1000 transition-[left,right] transform'
+      style={{ left, right }}
+    ></div>
+  )
+
   return (
     <div className='flex p-8 rounded-full select-none bg-slate-900'>
       <div className='relative'>
         {getKeys(presets).map(getButton)}
         {activeLayerPosition ? (
           <>
-            <div
-              className='absolute top-0 z-10 flex pointer-events-none transition-[clip-path] duration-1000'
-              style={{ clipPath: `inset(0 ${activeLayerPosition?.right}px 0 ${activeLayerPosition?.left}px)` }}
-            >
-              {getKeys(presets).map((mode) => (
-                <div key={mode} className={buttonPaddings}>
-                  <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
-                </div>
-              ))}
-            </div>
-            <div
-              className='absolute h-full bg-primary top-0 rounded-full pointer-events-none duration-1000 transition-[left,right] transform'
-              style={{ left: activeLayerPosition.left, right: activeLayerPosition.right }}
-            ></div>
+            {getTextMask(activeLayerPosition)}
+            {getActiveLayer(activeLayerPosition)}
           </>
         ) : null}
       </div>
