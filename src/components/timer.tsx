@@ -26,8 +26,8 @@ export const Timer: FunctionComponent<TimerProps> = ({ msLeft, timeFraction, isR
         <div className='absolute inset-[10px]'>
           <ProgressRing stroke={8} progressFraction={timeFraction}></ProgressRing>
         </div>
-        <div className='mb-16 text-[70px] pointer-events-none'>{getFormatedTime(msLeft)}</div>
-        <div className='absolute uppercase bottom-[70px] text-[13px] tracking-[10px] pointer-events-none'>
+        <div className='mb-16 text-[70px] select-none'>{getFormatedTime(msLeft)}</div>
+        <div className='absolute uppercase bottom-[70px] text-[13px] tracking-[10px] select-none'>
           {getActionText()}
         </div>
       </div>

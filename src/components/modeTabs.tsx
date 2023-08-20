@@ -40,7 +40,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
   )
 
   return (
-    <div className='flex p-8 rounded-full bg-slate-900'>
+    <div className='flex p-8 rounded-full select-none bg-slate-900'>
       <div className='relative'>
         {getKeys(presets).map(getButton)}
         <div
