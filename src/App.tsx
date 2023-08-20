@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import './App.tw.css'
 import { ModeTabs, Settings, Timer } from './components'
 import { useTimer } from './hooks'
@@ -17,15 +17,16 @@ function App() {
   const [activeMode, setActiveMode] = useState<Mode>('pomodoro')
   const [presets, setPresets] = useState(defaultPresets)
 
-  const { msLeft, isRunning, setTotalMs, resetTimer, triggerAction } = useTimer(presets[activeMode])
+  const { msLeft, isRunning, totalMs, setTotalMs, resetTimer, triggerAction } = useTimer(presets[activeMode])
 
   const handleModeChange = (mode: Mode) => {
     if (mode === activeMode) {
       resetTimer()
     }
     setActiveMode(mode)
-    setTotalMs(presets[mode])
   }
+
+  useLayoutEffect(() => setTotalMs(presets[activeMode]), [presets, activeMode, setTotalMs])
 
   return (
     <div
@@ -39,7 +40,7 @@ function App() {
           <Timer
             msLeft={msLeft}
             isRunning={isRunning}
-            timeFraction={1 - Math.round((msLeft / presets[activeMode]) * 1000) / 1000}
+            timeFraction={1 - Math.round((msLeft / totalMs) * 1000) / 1000}
           ></Timer>
         }
       </div>
