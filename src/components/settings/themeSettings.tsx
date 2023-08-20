@@ -45,7 +45,7 @@ export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, se
           ))}
         </div>
       </div>
-      <div className='py-[24px]'>
+      <div className='pt-[24px]'>
         <h3 className='text-center uppercase text-[12px] tracking-[4px] mb-[16px]'>color</h3>
         <div className='flex justify-center gap-[16px]'>
           {Object.values(Color).map((color) => (
@@ -56,7 +56,7 @@ export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, se
                 color === theme.color ? '' : 'cursor-pointer'
               } flex items-center justify-center w-[40px] h-[40px] rounded-full transition-[background-color,color] duration-300`}
             >
-              <span className={`${color === theme.color ? 'opacity-1' : 'opacity-0'} transition-opacity duration-200`}>
+              <span className={`${color !== theme.color ? 'opacity-0' : ''} transition-opacity duration-200`}>
                 <CheckmarkIcon></CheckmarkIcon>
               </span>
               <input
