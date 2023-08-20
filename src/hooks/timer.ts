@@ -1,5 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 
+const DEV_SPEED_UP = import.meta.env.DEV ? 800 : 1
+
 export function useTimer(initTotalMs: number) {
   const [isRunning, setIsRunning] = useState(false)
   const [msLeft, setMsLeft] = useState(initTotalMs)
@@ -16,7 +18,7 @@ export function useTimer(initTotalMs: number) {
     }
 
     const STEP_MS = 10
-    const intervalId = setInterval(() => setMsLeft((ms) => ms - STEP_MS * 2000), STEP_MS)
+    const intervalId = setInterval(() => setMsLeft((ms) => ms - STEP_MS * DEV_SPEED_UP), STEP_MS)
     return () => clearInterval(intervalId)
   }
 
