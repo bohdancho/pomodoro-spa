@@ -16,7 +16,7 @@ export const PresetsSettings: FunctionComponent<PresetsSettingsProps> = ({ prese
   }
 
   return (
-    <form className='py-24 border-b border-neutral-200'>
+    <div className='py-24 border-b border-neutral-200'>
       <h3 className='text-center uppercase text-[12px] tracking-[4px] mb-16'>time (minutes)</h3>
       <div className='flex flex-col gap-8'>
         {getKeys(presets).map((mode) => (
@@ -31,6 +31,6 @@ export const PresetsSettings: FunctionComponent<PresetsSettingsProps> = ({ prese
           </label>
         ))}
       </div>
-    </form>
+    </div>
   )
 }

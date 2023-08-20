@@ -1,6 +1,6 @@
 import { Dispatch, FunctionComponent, SetStateAction, useReducer, useState } from 'react'
-import { PresetsSettings, ThemeSettings } from '..'
-import gearImg from '../../assets/gear.svg'
+import { PresetsSettings, ThemeSettings } from '.'
+import { ReactComponent as GearImg } from '../../assets/gear.svg'
 import { Presets, Theme } from '../../models'
 
 interface SettingsProps {
@@ -23,11 +23,11 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
   return (
     <>
       <button type='button' onClick={toggleIsVisible}>
-        <img src={gearImg} />
+        <GearImg></GearImg>
       </button>
       {isVisible ? (
         <div className='fixed inset-0 z-50 flex items-center px-24 backdrop-brightness-50'>
-          <div className='w-full rounded-[15px] bg-white text-slate-900'>
+          <form className='w-full rounded-[15px] bg-white text-slate-900'>
             <h2 className='pt-24 pl-24 text-xl border-b pb-28 border-neutral-200'>Settings</h2>
             <div className='px-24'>
               <PresetsSettings presets={updatedPresets} setPresets={setUpdatedPresets}></PresetsSettings>
@@ -36,7 +36,7 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
             <button type='button' onClick={save}>
               apply
             </button>
-          </div>
+          </form>
         </div>
       ) : null}
     </>
