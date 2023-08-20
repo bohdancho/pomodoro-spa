@@ -25,14 +25,14 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
     })
   }, [activeMode])
 
-  const buttonPaddings = 'px-24 py-[18px]'
+  const buttonStyles = 'text-[13px] px-[20px] py-[16px]'
 
   const getButton = (mode: Mode) => (
     <button
       ref={(ref) => (activeMode === mode ? (activeButtonRef.current = ref) : null)}
       type='button'
       key={mode}
-      className={buttonPaddings}
+      className={buttonStyles}
       onClick={() => handleModeChange(mode)}
     >
       <div className='text-blue-100'>{mode}</div>
@@ -45,7 +45,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
       style={{ clipPath: `inset(0 ${right}px 0 ${left}px)` }}
     >
       {getKeys(presets).map((mode) => (
-        <div key={mode} className={buttonPaddings}>
+        <div key={mode} className={buttonStyles}>
           <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
         </div>
       ))}
@@ -60,7 +60,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
   )
 
   return (
-    <div className='flex p-8 rounded-full select-none bg-slate-900'>
+    <div className='flex p-8 rounded-full select-none bg-slate-900 whitespace-nowrap'>
       <div className='relative'>
         {getKeys(presets).map(getButton)}
         {activeLayerPosition ? (
