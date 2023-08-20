@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 
-const DEV_SPEED_UP = import.meta.env.DEV ? 800 : 1
+const DEV_SPEED_UP = import.meta.env.DEV ? 1000 : 1
 
 export function useTimer(initTotalMs: number) {
   const [isRunning, setIsRunning] = useState(false)
