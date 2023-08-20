@@ -38,7 +38,7 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
           isVisible ? '' : 'opacity-0 pointer-events-none'
         } fixed inset-0 z-50 flex items-center px-[24px] md:px-[40px] backdrop-brightness-50 transition-opacity duration-200`}
       >
-        <form className='w-full max-w-[400px] md:max-w-[540px] mx-auto rounded-[15px] bg-white text-slate-900'>
+        <form className='relative w-full max-w-[400px] md:max-w-[540px] mx-auto rounded-[15px] bg-white text-slate-900'>
           <h2 className='pt-[24px] px-[24px] pb-[28px] md:pt-[34px] md:pb-[31px] md:px-[40px] text-xl md:text-[28px] border-b border-neutral-200'>
             Settings
           </h2>
@@ -52,6 +52,13 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
             onClick={save}
           >
             Apply
+          </button>
+          <button
+            type='button'
+            onClick={toggleIsVisible}
+            className='absolute right-[24px] top-[29px] md:right-[38px] md:top-[43px] text-slate-400 text-[19px] leading-[16px] w-[16px] h-[16px]'
+          >
+            ✖
           </button>
         </form>
       </div>
