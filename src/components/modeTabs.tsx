@@ -14,10 +14,6 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
   const [activeLayerRight, setActiveLayerRight] = useState<number | null>(null)
 
   useLayoutEffect(() => {
-    console.log('rerendered')
-  })
-
-  useLayoutEffect(() => {
     document.fonts.ready.then(() => {
       const buttonRect = activeButtonRef.current?.getBoundingClientRect()
       const parentRect = activeButtonRef.current?.parentElement?.getBoundingClientRect()
@@ -53,7 +49,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
         >
           {getKeys(presets).map((mode) => (
             <div key={mode} className={buttonPaddings}>
-              <div className='relative text-slate-800'>{mode}</div>
+              <div className='relative text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
             </div>
           ))}
         </div>
