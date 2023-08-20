@@ -1,4 +1,5 @@
-import { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect } from 'react'
+import { useLocalStorage } from 'usehooks-ts'
 import './App.tw.css'
 import { ModeTabs, Settings, Timer } from './components'
 import { useTimer } from './hooks'
@@ -13,9 +14,9 @@ const defaultPresets: Presets = {
 }
 
 function App() {
-  const [theme, setTheme] = useState<Theme>(defaultTheme)
-  const [activeMode, setActiveMode] = useState<Mode>('pomodoro')
-  const [presets, setPresets] = useState(defaultPresets)
+  const [theme, setTheme] = useLocalStorage<Theme>('theme', defaultTheme)
+  const [activeMode, setActiveMode] = useLocalStorage<Mode>('activeMode', 'pomodoro')
+  const [presets, setPresets] = useLocalStorage('presets', defaultPresets)
 
   const { msLeft, isRunning, totalMs, setTotalMs, resetTimer, triggerAction } = useTimer(presets[activeMode])
 
