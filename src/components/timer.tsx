@@ -24,7 +24,7 @@ export const Timer: FunctionComponent<TimerProps> = ({ msLeft, timeFraction, isR
   }
 
   return (
-    <div className='relative cursor-pointer flex p-[16px] w-[300px] aspect-square bg-gradient-to-tl from-slate-700 to-slate-900 rounded-full shadow md:w-[410px] md:p-[22px]'>
+    <div className='relative cursor-pointer flex p-[16px] w-[300px] aspect-square bg-gradient-to-tl from-slate-700 to-slate-900 rounded-full shadow md:w-[380px] md:p-[22px]'>
       <div className='flex items-center justify-center w-full h-full rounded-full bg-slate-900'>
         <div className='absolute inset-[26px] md:inset-[35px]'>
           <ProgressRing stroke={isMd ? 11 : 8} progressFraction={timeFraction}></ProgressRing>
