@@ -23,6 +23,7 @@ function App() {
   const handleModeChange = (mode: Mode) => {
     if (mode === activeMode) {
       resetTimer()
+      return
     }
     setActiveMode(mode)
   }
