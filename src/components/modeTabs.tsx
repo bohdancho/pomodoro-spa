@@ -50,7 +50,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
 
   const getTextMask = ({ left, right }: { left: number; right: number }) => (
     <div
-      className='absolute inset-0 z-10 pointer-events-none transition-[clip-path] duration-1000'
+      className='absolute inset-0 z-20 pointer-events-none transition-[clip-path] duration-1000'
       style={{ clipPath: `inset(0 ${right}px 0 ${left}px)` }}
     >
       <div className='flex'>
@@ -65,7 +65,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
 
   const getActiveLayer = ({ left, right }: { left: number; right: number }) => (
     <div
-      className='absolute h-full bg-primary top-0 rounded-full pointer-events-none duration-1000 transition-[left,right] transform'
+      className='absolute h-full bg-primary z-10 top-0 rounded-full pointer-events-none duration-1000 transition-[left,right] transform'
       style={{ left, right }}
     ></div>
   )
