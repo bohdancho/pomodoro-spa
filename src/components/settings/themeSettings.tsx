@@ -32,9 +32,14 @@ export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, se
               key={font}
               className={`${
                 font === theme.font ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-800/75 cursor-pointer'
-              } flex items-center justify-center w-[40px] h-[40px] rounded-full transition-[background-color,color] duration-300`}
+              } relative flex items-center justify-center w-[40px] h-[40px] rounded-full transition-[background-color,color] duration-300`}
             >
               {getFontIcon(font)}
+              <div
+                className={`${
+                  font !== theme.font ? 'hover:opacity-100' : ''
+                } opacity-0 absolute border-[2px] rounded-full -inset-[5px] border-slate-100`}
+              ></div>
               <input
                 className='absolute invisible'
                 type='radio'
@@ -54,8 +59,13 @@ export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, se
               style={{ backgroundColor: color }}
               className={`${
                 color === theme.color ? '' : 'cursor-pointer'
-              } flex items-center justify-center w-[40px] h-[40px] rounded-full transition-[background-color,color] duration-300`}
+              } relative flex items-center justify-center w-[40px] h-[40px] rounded-full transition-[background-color,color] duration-300`}
             >
+              <div
+                className={`${
+                  color !== theme.color ? 'hover:opacity-100' : ''
+                } opacity-0 absolute border-[2px] rounded-full -inset-[5px] border-slate-100`}
+              ></div>
               <span className={`${color !== theme.color ? 'opacity-0' : ''} transition-opacity duration-200`}>
                 <CheckmarkIcon></CheckmarkIcon>
               </span>
