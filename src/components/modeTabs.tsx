@@ -1,4 +1,4 @@
-import { FunctionComponent, useLayoutEffect, useRef, useState } from 'react'
+import { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { Mode, Presets } from '../models'
 import { getKeys } from '../utils'
 
@@ -12,17 +12,26 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
   const activeButtonRef = useRef<HTMLButtonElement | null>()
   const [activeLayerPosition, setActiveLayerPosition] = useState<{ left: number; right: number } | null>(null)
 
-  useLayoutEffect(() => {
-    document.fonts.ready.then(() => {
-      const buttonRect = activeButtonRef.current?.getBoundingClientRect()
-      const parentRect = activeButtonRef.current?.parentElement?.getBoundingClientRect()
+  const handleActiveLayer = () => {
+    const buttonRect = activeButtonRef.current?.getBoundingClientRect()
+    const parentRect = activeButtonRef.current?.parentElement?.getBoundingClientRect()
 
-      if (buttonRect && parentRect) {
-        const left = buttonRect.left - parentRect.left
-        const right = parentRect.right - buttonRect.right
-        setActiveLayerPosition({ left, right })
-      }
-    })
+    if (buttonRect && parentRect) {
+      const left = buttonRect.left - parentRect.left
+      const right = parentRect.right - buttonRect.right
+      setActiveLayerPosition({ left, right })
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleActiveLayer)
+    return () => {
+      window.removeEventListener('resize', handleActiveLayer)
+    }
+  }, [])
+
+  useEffect(() => {
+    document.fonts.ready.then(handleActiveLayer)
   }, [activeMode])
 
   const buttonStyles = 'text-[13px] w-1/3 text-center py-[16px]'
