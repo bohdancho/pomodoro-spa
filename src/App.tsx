@@ -30,7 +30,7 @@ function App() {
   return (
     <div
       style={{ '--color-primary': theme.color, fontFamily: theme.font } as CustomCSS}
-      className='flex flex-col items-center justify-center w-screen h-screen gap-48 px-8 pt-32 pb-48 text-blue-100 bg-slate-800'
+      className='flex flex-col items-center justify-center w-screen h-screen gap-[48px] px-[8px] pt-[32px] pb-[48px] text-blue-100 bg-slate-800'
     >
       <h1 className='text-[32px]'>pomodoro</h1>
       <ModeTabs presets={presets} activeMode={activeMode} handleModeChange={handleModeChange}></ModeTabs>
