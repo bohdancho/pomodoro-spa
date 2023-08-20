@@ -35,7 +35,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
       className={buttonPaddings}
       onClick={() => handleModeChange(mode)}
     >
-      <div className='relative z-10 text-blue-100'>{mode}</div>
+      <div className='text-blue-100'>{mode}</div>
     </button>
   )
 
@@ -44,12 +44,12 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
       <div className='relative'>
         {getKeys(presets).map(getButton)}
         <div
-          className='absolute top-0 z-20 flex pointer-events-none transition-[clip-path] duration-1000'
+          className='absolute top-0 z-10 flex pointer-events-none transition-[clip-path] duration-1000'
           style={{ clipPath: `inset(0 ${activeLayerRight}px 0 ${activeLayerLeft}px)` }}
         >
           {getKeys(presets).map((mode) => (
             <div key={mode} className={buttonPaddings}>
-              <div className='relative text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
+              <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
             </div>
           ))}
         </div>
