@@ -25,7 +25,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
     })
   }, [activeMode])
 
-  const buttonStyles = 'text-[13px] min-w-[103px] px-[12px] text-center py-[16px]'
+  const buttonStyles = 'text-[13px] w-[103px] text-center py-[16px]'
 
   const getButton = (mode: Mode) => (
     <button
