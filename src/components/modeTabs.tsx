@@ -25,7 +25,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
     })
   }, [activeMode])
 
-  const buttonStyles = 'text-[13px] w-[103px] text-center py-[16px]'
+  const buttonStyles = 'text-[13px] w-1/3 text-center py-[16px]'
 
   const getButton = (mode: Mode) => (
     <button
@@ -41,14 +41,16 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
 
   const getTextMask = ({ left, right }: { left: number; right: number }) => (
     <div
-      className='absolute top-0 z-10 flex pointer-events-none transition-[clip-path] duration-1000'
+      className='absolute inset-0 z-10 pointer-events-none transition-[clip-path] duration-1000'
       style={{ clipPath: `inset(0 ${right}px 0 ${left}px)` }}
     >
-      {getKeys(presets).map((mode) => (
-        <div key={mode} className={buttonStyles}>
-          <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
-        </div>
-      ))}
+      <div className='flex'>
+        {getKeys(presets).map((mode) => (
+          <div key={mode} className={buttonStyles}>
+            <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 
@@ -60,15 +62,17 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
   )
 
   return (
-    <div className='flex p-[8px] rounded-full select-none bg-slate-900 whitespace-nowrap'>
-      <div className='relative'>
-        {getKeys(presets).map(getButton)}
-        {activeLayerPosition ? (
-          <>
-            {getTextMask(activeLayerPosition)}
-            {getActiveLayer(activeLayerPosition)}
-          </>
-        ) : null}
+    <div className='w-full px-[24px]'>
+      <div className='mx-auto px-[6px] py-[8px] max-w-[373px] rounded-full select-none bg-slate-900 whitespace-nowrap'>
+        <div className='relative'>
+          {getKeys(presets).map(getButton)}
+          {activeLayerPosition ? (
+            <>
+              {getTextMask(activeLayerPosition)}
+              {getActiveLayer(activeLayerPosition)}
+            </>
+          ) : null}
+        </div>
       </div>
     </div>
   )
