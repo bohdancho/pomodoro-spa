@@ -18,6 +18,7 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
   const save = () => {
     setTheme(updatedTheme)
     setPresets(updatedPresets)
+    toggleIsVisible()
   }
 
   const overlayClickHandler: MouseEventHandler = (e) => {
