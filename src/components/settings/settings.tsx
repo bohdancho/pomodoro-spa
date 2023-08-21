@@ -48,7 +48,7 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
           </div>
           <button
             type='button'
-            className='mx-auto translate-y-1/2 block w-[140px] text-center pt-[14px] pb-[17px] text-white text-base bg-red-400 hover:bg-[#F98D8D] rounded-[26.50px]'
+            className='mx-auto translate-y-1/2 block w-[140px] text-center pt-[14px] pb-[17px] text-white text-base bg-primary hover:brightness-110 rounded-[26.50px]'
             onClick={save}
           >
             Apply
