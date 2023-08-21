@@ -24,9 +24,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: Deploy with gh-pages
+      - name: Build
         run: |
           npm ci
           npm run build
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+      - name: Deploy with gh-pages
+        run: |
+          git remote set-url origin https://git:${ secrets.GITHUB_TOKEN }@github.com/${GITHUB_REPOSITORY}.git
           npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
