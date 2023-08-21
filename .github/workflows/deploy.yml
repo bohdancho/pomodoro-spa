@@ -1,6 +1,6 @@
 # Run npm ci and npm run deploy
 
-name: Deploy
+name: init-pages-build-deployment
 
 on:
   workflow_dispatch:
