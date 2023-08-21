@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 
 const DEV_SPEED_UP = import.meta.env.DEV ? 1000 : 1
 
@@ -7,12 +7,19 @@ export function useTimer(initTotalMs: number) {
   const [msLeft, setMsLeft] = useState(initTotalMs)
   const [totalMs, setTotalMs] = useState(initTotalMs)
 
-  const resetTimer = () => {
+  if (!msLeft) {
     setIsRunning(false)
-    setMsLeft(totalMs)
   }
 
-  const handleTime = () => {
+  const resetTimer = useCallback(() => {
+    setIsRunning(false)
+    setMsLeft(totalMs)
+  }, [totalMs])
+
+  useLayoutEffect(resetTimer, [totalMs, resetTimer])
+  useEffect(handleTime, [isRunning])
+
+  function handleTime() {
     if (!isRunning) {
       return
     }
@@ -22,21 +29,13 @@ export function useTimer(initTotalMs: number) {
     return () => clearInterval(intervalId)
   }
 
-  const triggerAction = () => {
+  function triggerAction() {
     if (msLeft) {
       setIsRunning(!isRunning)
       return
     }
     resetTimer()
   }
-
-  useLayoutEffect(resetTimer, [totalMs])
-  useEffect(handleTime, [isRunning])
-  useEffect(() => {
-    if (!msLeft) {
-      setIsRunning(false)
-    }
-  }, [msLeft])
 
   return { msLeft, isRunning, totalMs, setTotalMs, resetTimer, triggerAction }
 }

@@ -28,7 +28,7 @@ function App() {
     setActiveMode(mode)
   }
 
-  useLayoutEffect(() => setTotalMs(presets[activeMode]), [presets, activeMode, setTotalMs])
+  useLayoutEffect(() => setTotalMs(presets[activeMode]), [setTotalMs, presets, activeMode])
 
   return (
     <main
