@@ -11,7 +11,7 @@ interface SettingsProps {
 }
 
 export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, presets, setPresets }) => {
-  const [isVisible, toggleIsVisible] = useReducer((prev) => !prev, false)
+  const [isVisible, toggleIsVisible] = useReducer((prev) => !prev, true)
   const [updatedTheme, setUpdatedTheme] = useState(theme)
   const [updatedPresets, setUpdatedPresets] = useState(presets)
 

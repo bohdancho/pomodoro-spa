@@ -7,7 +7,7 @@ export function useTimer(initTotalMs: number) {
   const [msLeft, setMsLeft] = useState(initTotalMs)
   const [totalMs, setTotalMs] = useState(initTotalMs)
 
-  if (!msLeft) {
+  if (!msLeft && isRunning) {
     setIsRunning(false)
   }
 
