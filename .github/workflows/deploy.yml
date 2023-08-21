@@ -25,4 +25,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
+      - run: npm run build
       - run: npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
