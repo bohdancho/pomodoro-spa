@@ -44,7 +44,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
       className={buttonStyles}
       onClick={() => handleModeChange(mode)}
     >
-      <div className='text-blue-100/80'>{mode}</div>
+      <div className='text-blue-100/80'>{mode.replace('-', ' ')}</div>
     </button>
   )
 
@@ -56,7 +56,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
       <div className='flex'>
         {getKeys(presets).map((mode) => (
           <div key={mode} className={buttonStyles}>
-            <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode}</div>
+            <div className='text-slate-800 shadow-slate-800 text-shadow'>{mode.replace('-', ' ')}</div>
           </div>
         ))}
       </div>
