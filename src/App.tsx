@@ -1,10 +1,10 @@
-import { useEffect, useLayoutEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 import './App.tw.css'
 import { ModeTabs, Settings, Timer } from './components'
 import { useTimer } from './hooks'
 import { Color, CustomCSS, Font, Mode, Presets, Theme } from './models'
-import { MINUTE_IN_MS, getFormatedTime } from './utils'
+import { MINUTE_IN_MS } from './utils'
 
 const defaultTheme: Theme = { color: Color.tomato, font: Font.spaceMono }
 const defaultPresets: Presets = {
@@ -27,10 +27,6 @@ function App() {
     }
     setActiveMode(mode)
   }
-
-  useEffect(() => {
-    document.title = getFormatedTime(msLeft)
-  }, [msLeft])
 
   useLayoutEffect(() => setTotalMs(presets[activeMode]), [setTotalMs, presets, activeMode])
 
