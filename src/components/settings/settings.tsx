@@ -1,7 +1,8 @@
 import { Dispatch, FunctionComponent, MouseEventHandler, SetStateAction, useReducer, useState } from 'react'
 import { PresetsSettings, ThemeSettings } from '.'
 import { ReactComponent as GearImg } from '../../assets/gear.svg'
-import { Presets, Theme } from '../../models'
+import { Mode, Presets, Theme } from '../../models'
+import { getKeys } from '../../utils'
 
 interface SettingsProps {
   theme: Theme
@@ -14,14 +15,22 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
   const [isVisible, toggleIsVisible] = useReducer((prev) => !prev, false)
   const [updatedTheme, setUpdatedTheme] = useState(theme)
   const [updatedPresets, setUpdatedPresets] = useState(presets)
+  const [invalidPresets, setInvalidPresets] = useState<Mode[]>([])
 
   const save = () => {
-    setTheme(updatedTheme)
-
-    const arePresetsValid = !Object.values(updatedPresets).some((value) => value === undefined)
-    if (arePresetsValid) {
-      setPresets(updatedPresets)
+    const _invalidPresets: Mode[] = []
+    getKeys(updatedPresets).forEach((mode) => {
+      if (updatedPresets[mode] === undefined) {
+        _invalidPresets.push(mode)
+      }
+    })
+    if (_invalidPresets.length) {
+      setInvalidPresets(_invalidPresets)
+      return
     }
+
+    setPresets(updatedPresets)
+    setTheme(updatedTheme)
     toggleIsVisible()
   }
 
@@ -47,7 +56,11 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
             Settings
           </h2>
           <div className='px-[24px] md:px-[40px]'>
-            <PresetsSettings presets={updatedPresets} setPresets={setUpdatedPresets}></PresetsSettings>
+            <PresetsSettings
+              presets={updatedPresets}
+              setPresets={setUpdatedPresets}
+              invalidPresets={invalidPresets}
+            ></PresetsSettings>
             <ThemeSettings theme={updatedTheme} setTheme={setUpdatedTheme}></ThemeSettings>
           </div>
           <button
