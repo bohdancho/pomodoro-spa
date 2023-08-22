@@ -2,6 +2,9 @@ export const SECOND_IN_MS = 1000
 export const MINUTE_IN_SECONDS = 60
 export const MINUTE_IN_MS = MINUTE_IN_SECONDS * SECOND_IN_MS
 
+export const getSeconds = (ms: number): number => Math.floor(ms / SECOND_IN_MS)
+export const getMinutes = (ms: number): number => Math.floor(ms / MINUTE_IN_MS)
+
 export const getFormatedTime = (ms: number): string => {
   const fullSeconds = getSeconds(ms)
   const minutes = getMinutes(ms)
@@ -19,6 +22,3 @@ export const getFormatedTime = (ms: number): string => {
 
   return `${minutesString}:${secondsString}`
 }
-
-export const getSeconds = (ms: number): number => Math.floor(ms / SECOND_IN_MS)
-export const getMinutes = (ms: number): number => Math.floor(ms / MINUTE_IN_MS)

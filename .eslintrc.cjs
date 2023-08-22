@@ -18,7 +18,6 @@ module.exports = {
     },
   },
   rules: {
-    // 'no-use-before-define': ['error', { functions: false }],
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',
     '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
