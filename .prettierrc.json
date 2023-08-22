@@ -4,5 +4,9 @@
   "semi": false,
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "plugins": ["prettier-plugin-organize-imports", "@trivago/prettier-plugin-sort-imports"],
+  "importOrder": ["^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

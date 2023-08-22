@@ -1,4 +1,5 @@
 import { Dispatch, FunctionComponent, MouseEventHandler, SetStateAction, useReducer, useState } from 'react'
+
 import { PresetsSettings, ThemeSettings } from '.'
 import { ReactComponent as GearImg } from '../../assets/gear.svg'
 import { Mode, Presets, Theme } from '../../models'

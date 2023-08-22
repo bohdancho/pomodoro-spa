@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react'
+
 import { useBreakpoints } from '../hooks'
 import { ProgressRing } from '../ui'
 import { getFormatedTime } from '../utils'

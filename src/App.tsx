@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
+
 import './App.tw.css'
 import { ModeTabs, Settings, Timer } from './components'
 import { useTimer } from './hooks'
