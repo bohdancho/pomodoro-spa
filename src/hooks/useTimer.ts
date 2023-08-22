@@ -8,13 +8,13 @@ export function useTimer(initTotalMs: number) {
   const [isRunning, setIsRunning] = useState(false)
   const [msLeft, dispatchMsLeft] = useReducer(msReducer, initTotalMs)
 
-  useLayoutEffect(resetTimer, [totalMs])
-  useEffect(handleTime, [isRunning])
-
-  function resetTimer() {
+  const resetTimer = useCallback(() => {
     setIsRunning(false)
     dispatchMsLeft('reset')
-  }
+  }, [])
+
+  useLayoutEffect(resetTimer, [totalMs, resetTimer])
+  useEffect(handleTime, [isRunning])
 
   function handleTime() {
     if (!isRunning) {
@@ -31,7 +31,7 @@ export function useTimer(initTotalMs: number) {
       return
     }
     resetTimer()
-  }, [msLeft])
+  }, [msLeft, resetTimer])
 
   function msReducer(prevMsLeft: number, action: 'tick' | 'reset') {
     switch (action) {
