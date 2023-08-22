@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react'
+import { useCallback, useEffect, useLayoutEffect } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 
 import './App.tw.css'
@@ -21,13 +21,16 @@ function App() {
 
   const { msLeft, isRunning, totalMs, setTotalMs, resetTimer, triggerAction } = useTimer(presets[activeMode])
 
-  const handleModeChange = (mode: Mode) => {
-    if (mode === activeMode) {
-      resetTimer()
-      return
-    }
-    setActiveMode(mode)
-  }
+  const handleModeChange = useCallback(
+    (mode: Mode) => {
+      if (mode === activeMode) {
+        resetTimer()
+        return
+      }
+      setActiveMode(mode)
+    },
+    [activeMode, setActiveMode, resetTimer],
+  )
 
   useEffect(() => {
     document.title = getFormatedTime(msLeft)
