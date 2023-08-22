@@ -23,7 +23,12 @@
     /* Paths */
     // "baseUrl": "src",
     "paths": {
-      "@/*": ["./src/*"]
+      // repeats in tsconfig.ts, .eslintrc.cjs, vite.config.ts
+      "@assets": ["./src/assets/index.ts"],
+      "@components": ["./src/components/index.ts"],
+      "@hooks": ["./src/hooks/index.ts"],
+      "@models": ["./src/models/index.ts"],
+      "@utils": ["./src/utils/index.ts"]
     }
   },
   "include": ["src"],
