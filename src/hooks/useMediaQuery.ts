@@ -16,7 +16,7 @@ export function useMediaQuery(query: string): boolean {
       mediaQuery.addEventListener('change', handler)
       return () => mediaQuery.removeEventListener('change', handler)
     },
-    [], // Empty array ensures effect is only run on mount and unmount
+    [query], // Empty array ensures effect is only run on mount and unmount
   )
   return matches
 }
