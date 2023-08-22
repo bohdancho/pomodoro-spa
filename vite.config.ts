@@ -1,8 +1,9 @@
-import react from '@vitejs/plugin-react-swc'
 import { URL, fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import eslint from 'vite-plugin-eslint'
 import svgr from 'vite-plugin-svgr'
+
+import react from '@vitejs/plugin-react-swc'
 
 // https://vitejs.dev/config/
 export default defineConfig({

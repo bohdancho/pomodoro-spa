@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react'
 
 import { useBreakpoints } from '@/hooks'
 import { getFormatedTime } from '@/utils'
+
 import { ProgressRing } from './progressRing'
 
 interface TimerProps {
