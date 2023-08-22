@@ -1,10 +1,10 @@
 import { Dispatch, FunctionComponent, SetStateAction } from 'react'
 
-import { ReactComponent as CheckmarkIcon } from '../../assets/checkmark.svg'
-import { ReactComponent as KumbhSansIcon } from '../../assets/kumbh-sans-icon.svg'
-import { ReactComponent as RobotoSlabIcon } from '../../assets/roboto-slab-icon.svg'
-import { ReactComponent as SpaceMonoIcon } from '../../assets/space-mono-icon.svg'
-import { Color, Font, Theme } from '../../models'
+import { ReactComponent as CheckmarkIcon } from '@/assets/checkmark.svg'
+import { ReactComponent as KumbhSansIcon } from '@/assets/kumbh-sans-icon.svg'
+import { ReactComponent as RobotoSlabIcon } from '@/assets/roboto-slab-icon.svg'
+import { ReactComponent as SpaceMonoIcon } from '@/assets/space-mono-icon.svg'
+import { Color, Font, Theme } from '@/models'
 
 interface ThemeSettingsProps {
   theme: Theme

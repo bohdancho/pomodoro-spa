@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useRef, useState } from 'react'
 
-import { Mode, Presets } from '../models'
-import { getKeys } from '../utils'
+import { Mode, Presets } from '@/models'
+import { getKeys } from '@/utils'
 
 interface ModeTabsProps {
   presets: Presets
