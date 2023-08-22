@@ -10,7 +10,7 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', 'import-alias'],
   settings: {
     react: {
       version: 'detect',
@@ -21,5 +21,14 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/no-unused-expressions': 'warn',
+    'import-alias/import-alias': [
+      'error',
+      {
+        relativeDepth: 0,
+        aliases: [
+          { alias: '@/', matcher: '^src' }, // src/modules/app/test -> @src/modules/app/test
+        ],
+      },
+    ],
   },
 }
