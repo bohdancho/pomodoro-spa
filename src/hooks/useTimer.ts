@@ -1,40 +1,56 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useReducer, useState } from 'react'
 
 const DEV_SPEED_UP = import.meta.env.DEV ? 1000 : 1
+const STEP_MS = 10
 
 export function useTimer(initTotalMs: number) {
-  const [isRunning, setIsRunning] = useState(false)
-  const [msLeft, setMsLeft] = useState(initTotalMs)
   const [totalMs, setTotalMs] = useState(initTotalMs)
+  const [isRunning, setIsRunning] = useState(false)
+  const [msLeft, dispatchMsLeft] = useReducer(msReducer, initTotalMs)
 
-  if (!msLeft && isRunning) {
-    setIsRunning(false)
-  }
-
-  const resetTimer = useCallback(() => {
-    setIsRunning(false)
-    setMsLeft(totalMs)
-  }, [totalMs])
-
-  useLayoutEffect(resetTimer, [totalMs, resetTimer])
+  useLayoutEffect(resetTimer, [totalMs])
   useEffect(handleTime, [isRunning])
+
+  function resetTimer() {
+    setIsRunning(false)
+    dispatchMsLeft('reset')
+  }
 
   function handleTime() {
     if (!isRunning) {
       return
     }
 
-    const STEP_MS = 10
-    const intervalId = setInterval(() => setMsLeft((ms) => ms - STEP_MS * DEV_SPEED_UP), STEP_MS)
+    const intervalId = setInterval(() => dispatchMsLeft('tick'), STEP_MS)
     return () => clearInterval(intervalId)
   }
 
-  function triggerAction() {
+  const triggerAction = useCallback(() => {
     if (msLeft) {
-      setIsRunning(!isRunning)
+      setIsRunning((prev) => !prev)
       return
     }
     resetTimer()
+  }, [msLeft])
+
+  function msReducer(prevMsLeft: number, action: 'tick' | 'reset') {
+    switch (action) {
+      case 'reset': {
+        return totalMs
+      }
+      case 'tick': {
+        if (!isRunning) {
+          return prevMsLeft
+        }
+
+        const newMsLeft = prevMsLeft - STEP_MS * DEV_SPEED_UP
+        if (newMsLeft <= 0) {
+          setIsRunning(false)
+          return 0
+        }
+        return newMsLeft
+      }
+    }
   }
 
   return { msLeft, isRunning, totalMs, setTotalMs, resetTimer, triggerAction }

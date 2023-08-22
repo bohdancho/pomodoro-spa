@@ -1,3 +1,4 @@
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
   env: { browser: true, node: true, es2020: true },
@@ -17,6 +18,7 @@ module.exports = {
     },
   },
   rules: {
+    'no-use-before-define': ['error', { functions: false }],
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
