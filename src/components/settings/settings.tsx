@@ -50,11 +50,11 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
       <div
         onClick={overlayClickHandler}
         className={`${
-          isVisible ? '' : 'opacity-0 pointer-events-none'
-        } fixed inset-0 z-50 flex items-center px-[24px] md:px-[40px] backdrop-brightness-50 transition-opacity duration-200`}
+          isVisible ? '' : 'pointer-events-none opacity-0'
+        } fixed inset-0 z-50 flex items-center px-[24px] backdrop-brightness-50 transition-opacity duration-200 md:px-[40px]`}
       >
-        <form className='relative w-full max-w-[400px] md:max-w-[540px] mx-auto rounded-[15px] bg-white text-slate-900'>
-          <h2 className='pt-[24px] px-[24px] pb-[28px] md:pt-[34px] md:pb-[31px] md:px-[40px] text-xl md:text-[28px] border-b border-neutral-200'>
+        <form className='relative mx-auto w-full max-w-[400px] rounded-[15px] bg-white text-slate-900 md:max-w-[540px]'>
+          <h2 className='border-b border-neutral-200 px-[24px] pb-[28px] pt-[24px] text-xl md:px-[40px] md:pb-[31px] md:pt-[34px] md:text-[28px]'>
             Settings
           </h2>
           <div className='px-[24px] md:px-[40px]'>
@@ -67,7 +67,7 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
           </div>
           <button
             type='button'
-            className='mx-auto translate-y-1/2 block w-[140px] text-center pt-[14px] pb-[17px] text-white text-base bg-primary hover:brightness-110 rounded-[26.50px]'
+            className='mx-auto block w-[140px] translate-y-1/2 rounded-[26.50px] bg-primary pb-[17px] pt-[14px] text-center text-base text-white hover:brightness-110'
             onClick={save}
           >
             Apply
@@ -75,7 +75,7 @@ export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, pr
           <button
             type='button'
             onClick={toggleIsVisible}
-            className='absolute right-[24px] top-[29px] md:right-[38px] md:top-[43px] text-slate-400 text-[19px] leading-[16px] w-[16px] h-[16px]'
+            className='absolute right-[24px] top-[29px] h-[16px] w-[16px] text-[19px] leading-[16px] text-slate-400 md:right-[38px] md:top-[43px]'
           >
             ✖
           </button>

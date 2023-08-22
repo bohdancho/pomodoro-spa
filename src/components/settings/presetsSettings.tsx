@@ -26,21 +26,21 @@ export const PresetsSettings: FunctionComponent<PresetsSettingsProps> = ({ prese
   const handleTouch = (mode: Mode) => setTouchedPresets([...touchedPresets, mode])
 
   return (
-    <div className='py-[24px] border-b border-neutral-200'>
-      <h3 className='text-center md:text-left uppercase text-[12px] md:text-[13px] tracking-[4px] mb-[16px] md:mb-[26px]'>
+    <div className='border-b border-neutral-200 py-[24px]'>
+      <h3 className='mb-[16px] text-center text-[12px] uppercase tracking-[4px] md:mb-[26px] md:text-left md:text-[13px]'>
         time (minutes)
       </h3>
       <div className='flex flex-col gap-[8px] md:flex-row md:gap-[20px]'>
         {getKeys(presets).map((mode) => (
           <label className='flex items-center justify-between md:flex-col md:items-start' key={mode}>
-            <span className='md:mb-[10px] text-sm md:text-xs text-slate-400'>{mode.replace('-', ' ')}</span>
+            <span className='text-sm text-slate-400 md:mb-[10px] md:text-xs'>{mode.replace('-', ' ')}</span>
             <input
               type='numbers'
               className={`${
                 !touchedPresets.includes(mode) && invalidPresets.includes(mode)
                   ? 'border-red-500'
                   : 'border-transparent'
-              } border-2 w-[140px] bg-slate-100 rounded-[10px] text-black px-[16px] pt-[12px] pb-[10px] md:pt-[11px] md:pb-[14px] text-sm`}
+              } w-[140px] rounded-[10px] border-2 bg-slate-100 px-[16px] pb-[10px] pt-[12px] text-sm text-black md:pb-[14px] md:pt-[11px]`}
               value={presets[mode] === undefined ? '' : getMinutes(presets[mode])}
               onBlur={() => handleTouch(mode)}
               onChange={(e) => handleChange(e, mode)}

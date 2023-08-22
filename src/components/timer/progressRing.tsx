@@ -30,11 +30,11 @@ export const ProgressRing: FunctionComponent<ProgressBarProps> = ({ stroke, prog
   useLayoutEffect(getRadiusFromWrapper, [progressFraction, stroke, wrapperRef])
 
   return (
-    <div className='w-full h-full' ref={wrapperRef}>
+    <div className='h-full w-full' ref={wrapperRef}>
       {radius && computableParams ? (
-        <svg className='w-full h-full -rotate-90'>
+        <svg className='h-full w-full -rotate-90'>
           <circle
-            className='stroke-current fill-transparent text-primary'
+            className='fill-transparent stroke-current text-primary'
             strokeLinecap='round'
             strokeWidth={stroke}
             strokeDasharray={computableParams.circumference + ' ' + computableParams.circumference}

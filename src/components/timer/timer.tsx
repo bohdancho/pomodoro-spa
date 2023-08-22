@@ -26,13 +26,13 @@ export const Timer: FunctionComponent<TimerProps> = ({ msLeft, timeFraction, isR
   }
 
   return (
-    <div className='relative cursor-pointer flex p-[16px] w-[300px] aspect-square bg-gradient-to-tl from-slate-700 to-slate-900 rounded-full shadow md:w-[380px] md:p-[22px]'>
-      <div className='flex items-center justify-center w-full h-full rounded-full bg-slate-900'>
+    <div className='relative flex aspect-square w-[300px] cursor-pointer rounded-full bg-gradient-to-tl from-slate-700 to-slate-900 p-[16px] shadow md:w-[380px] md:p-[22px]'>
+      <div className='flex h-full w-full items-center justify-center rounded-full bg-slate-900'>
         <div className='absolute inset-[26px] md:inset-[35px]'>
           <ProgressRing stroke={isMd ? 11 : 8} progressFraction={timeFraction}></ProgressRing>
         </div>
-        <div className='mb-[16px] text-[70px] select-none md:text-[85px]'>{getFormatedTime(msLeft)}</div>
-        <div className='absolute uppercase bottom-[86px] text-[13px] tracking-[10px] select-none md:text-base md:bottom-[110px]'>
+        <div className='mb-[16px] select-none text-[70px] md:text-[85px]'>{getFormatedTime(msLeft)}</div>
+        <div className='absolute bottom-[86px] select-none text-[13px] uppercase tracking-[10px] md:bottom-[110px] md:text-base'>
           {getActionText()}
         </div>
       </div>

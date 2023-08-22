@@ -51,7 +51,7 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
 
   const getTextMask = ({ left, right }: { left: number; right: number }) => (
     <div
-      className='absolute inset-0 z-20 pointer-events-none transition-[clip-path] duration-1000'
+      className='pointer-events-none absolute inset-0 z-20 transition-[clip-path] duration-1000'
       style={{ clipPath: `inset(0 ${right}px 0 ${left}px)` }}
     >
       <div className='flex'>
@@ -66,14 +66,14 @@ export const ModeTabs: FunctionComponent<ModeTabsProps> = ({ presets, activeMode
 
   const getActiveLayer = ({ left, right }: { left: number; right: number }) => (
     <div
-      className='absolute h-full bg-primary z-10 top-0 rounded-full pointer-events-none duration-1000 transition-[left,right] transform'
+      className='pointer-events-none absolute top-0 z-10 h-full transform rounded-full bg-primary transition-[left,right] duration-1000'
       style={{ left, right }}
     ></div>
   )
 
   return (
     <div className='w-full px-[24px]'>
-      <div className='mx-auto px-[6px] py-[8px] max-w-[373px] rounded-full select-none bg-slate-900 whitespace-nowrap md:px-[8px] md:max-w-[390px]'>
+      <div className='mx-auto max-w-[373px] select-none whitespace-nowrap rounded-full bg-slate-900 px-[6px] py-[8px] md:max-w-[390px] md:px-[8px]'>
         <div className='relative'>
           {getKeys(presets).map(getButton)}
           {activeLayerPosition ? (
