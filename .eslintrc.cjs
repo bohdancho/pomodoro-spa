@@ -4,8 +4,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'eslint-config-prettier',
@@ -16,23 +14,6 @@ module.exports = {
   settings: {
     react: {
       version: 'detect',
-    },
-    'import/resolver': {
-      node: {
-        paths: ['src'],
-        extensions: ['.ts', '.tsx'],
-      },
-      alias: {
-        map: [
-          // repeats in tsconfig.ts, .eslintrc.cjs, vite.config.ts
-          ['@assets', './src/assets'],
-          ['@components', './src/components/index.ts'],
-          ['@hooks', './src/hooks'],
-          ['@models', './src/models'],
-          ['@utils', './src/utils'],
-        ],
-        extensions: ['.ts', '.tsx'],
-      },
     },
   },
   rules: {
