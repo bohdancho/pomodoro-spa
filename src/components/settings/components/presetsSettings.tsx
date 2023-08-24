@@ -2,6 +2,7 @@ import { ChangeEvent, Dispatch, FunctionComponent, SetStateAction, useEffect, us
 
 import { Mode, Presets } from '@/models'
 import { MINUTE_IN_MS, getKeys, getMinutes, isPositiveInteger } from '@/utils'
+import { SettingsSubtitle } from './settingsSubtitle'
 
 interface PresetsSettingsProps {
   presets: Presets
@@ -27,9 +28,7 @@ export const PresetsSettings: FunctionComponent<PresetsSettingsProps> = ({ prese
 
   return (
     <div className='border-b border-neutral-200 py-[24px]'>
-      <h3 className='mb-[16px] text-center text-[12px] uppercase tracking-[4px] md:mb-[26px] md:text-left md:text-[13px]'>
-        time (minutes)
-      </h3>
+      <SettingsSubtitle className='mb-[16px] md:mb-[26px]'>time (minutes)</SettingsSubtitle>
       <div className='flex flex-col gap-[8px] md:flex-row md:gap-[20px]'>
         {getKeys(presets).map((mode) => (
           <label className='flex items-center justify-between md:flex-col md:items-start' key={mode}>

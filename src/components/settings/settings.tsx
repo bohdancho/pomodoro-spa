@@ -4,7 +4,8 @@ import { ReactComponent as GearImg } from '@/assets/gear.svg'
 import { Mode, Presets, Theme } from '@/models'
 import { getKeys } from '@/utils'
 
-import { PresetsSettings, ThemeSettings } from '.'
+import { PresetsSettings } from './components/presetsSettings'
+import { ThemeSettings } from './components/themeSettings'
 
 interface SettingsProps {
   theme: Theme

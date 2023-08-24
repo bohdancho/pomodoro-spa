@@ -6,6 +6,8 @@ import { ReactComponent as RobotoSlabIcon } from '@/assets/roboto-slab-icon.svg'
 import { ReactComponent as SpaceMonoIcon } from '@/assets/space-mono-icon.svg'
 import { Color, Font, Theme } from '@/models'
 
+import { SettingsSubtitle } from './settingsSubtitle'
+
 interface ThemeSettingsProps {
   theme: Theme
   setTheme: Dispatch<SetStateAction<Theme>>
@@ -26,7 +28,7 @@ export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, se
   return (
     <>
       <div className='items-center border-b border-neutral-200 py-[24px] md:flex md:justify-between'>
-        <h3 className='mb-[16px] text-center text-[12px] uppercase tracking-[4px] md:mb-0 md:text-[13px]'>font</h3>
+        <SettingsSubtitle className='mb-[16px] md:mb-0'>font</SettingsSubtitle>
         <div className='flex justify-center gap-[16px]'>
           {Object.values(Font).map((font) => (
             <label
@@ -52,7 +54,7 @@ export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, se
         </div>
       </div>
       <div className='items-center pt-[24px] md:flex md:justify-between'>
-        <h3 className='mb-[16px] text-center text-[12px] uppercase tracking-[4px] md:mb-0 md:text-[13px]'>color</h3>
+        <SettingsSubtitle className='mb-[16px] md:mb-0'>color</SettingsSubtitle>
         <div className='flex justify-center gap-[16px]'>
           {Object.values(Color).map((color) => (
             <label
