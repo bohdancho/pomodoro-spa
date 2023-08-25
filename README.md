@@ -1,4 +1,6 @@
-# Pomodoro timer.
+# Pomodoro Timer
+
+### [Link to the Pomodoro Timer](bohdancho.github.io/pomodoro-spa)
 
 ### Features:
 
