@@ -7,7 +7,7 @@ import { useTimer } from './hooks'
 import { Color, CustomCSS, Font, Mode, Presets, Theme } from './models'
 import { MINUTE_IN_MS, getFormatedTime } from './utils'
 
-const defaultTheme: Theme = { color: Color.tomato, font: Font.spaceMono }
+const defaultTheme: Theme = { color: Color.tomato, font: Font.kumbhSans }
 const defaultPresets: Presets = {
   pomodoro: MINUTE_IN_MS * 25,
   'short-break': MINUTE_IN_MS * 3,
