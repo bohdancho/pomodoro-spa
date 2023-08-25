@@ -1,3 +1,4 @@
+import { WorkerInterval } from '@/utils'
 import { useCallback, useEffect, useLayoutEffect, useReducer, useState } from 'react'
 
 const DEV_SPEED_UP = import.meta.env.DEV ? 1000 : 1
@@ -20,8 +21,8 @@ export function useTimer(totalMs: number) {
       return
     }
 
-    const intervalId = setInterval(() => dispatchMsLeft('tick'), STEP_MS)
-    return () => clearInterval(intervalId)
+    const interval = new WorkerInterval(() => dispatchMsLeft('tick'), STEP_MS)
+    return () => interval.stop()
   }
 
   const triggerAction = useCallback(() => {
