@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 
 import './App.tw.css'
@@ -47,13 +47,11 @@ function App() {
         <ModeTabs presets={presets} activeMode={activeMode} handleModeChange={handleModeChange}></ModeTabs>
       </div>
       <div onClick={triggerAction} className=''>
-        {
         <Timer
           msLeft={msLeft}
           isRunning={isRunning}
           timeFraction={1 - Math.round((msLeft / totalMs) * 1000) / 1000}
         ></Timer>
-        }
       </div>
       <div className='mt-auto lg:mt-0'>
         <Settings theme={theme} setTheme={setTheme} presets={presets} setPresets={setPresets}></Settings>
