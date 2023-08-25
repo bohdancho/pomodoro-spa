@@ -1,6 +1,6 @@
 # Pomodoro Timer
 
-### [Link to the Pomodoro Timer](bohdancho.github.io/pomodoro-spa)
+### [Link to the Pomodoro Timer](https://bohdancho.github.io/pomodoro-spa)
 
 ### Features:
 
