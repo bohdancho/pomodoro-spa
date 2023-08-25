@@ -13,6 +13,17 @@ interface ThemeSettingsProps {
   setTheme: Dispatch<SetStateAction<Theme>>
 }
 
+const getFontIcon = (font: Font) => {
+  switch (font) {
+    case Font.kumbhSans:
+      return <KumbhSansIcon></KumbhSansIcon>
+    case Font.robotoSlab:
+      return <RobotoSlabIcon></RobotoSlabIcon>
+    case Font.spaceMono:
+      return <SpaceMonoIcon></SpaceMonoIcon>
+  }
+}
+
 export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, setTheme }) => {
   return (
     <>
@@ -42,7 +53,7 @@ export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, se
           ))}
         </div>
       </div>
-      <div className='items-center border-b border-neutral-200 py-[24px] md:flex md:justify-between'>
+      <div className='items-center pt-[24px] md:flex md:justify-between'>
         <SettingsSubtitle className='mb-[16px] md:mb-0'>color</SettingsSubtitle>
         <div className='flex justify-center gap-[16px]'>
           {Object.values(Color).map((color) => (
@@ -73,15 +84,4 @@ export const ThemeSettings: FunctionComponent<ThemeSettingsProps> = ({ theme, se
       </div>
     </>
   )
-}
-
-function getFontIcon(font: Font) {
-  switch (font) {
-    case Font.kumbhSans:
-      return <KumbhSansIcon></KumbhSansIcon>
-    case Font.robotoSlab:
-      return <RobotoSlabIcon></RobotoSlabIcon>
-    case Font.spaceMono:
-      return <SpaceMonoIcon></SpaceMonoIcon>
-  }
 }

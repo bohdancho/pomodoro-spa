@@ -4,7 +4,6 @@ import { ReactComponent as GearImg } from '@/assets/gear.svg'
 import { Mode, Presets, Theme } from '@/models'
 import { getKeys } from '@/utils'
 
-import { AutosaveSettings } from './components/autosaveSettings'
 import { PresetsSettings } from './components/presetsSettings'
 import { ThemeSettings } from './components/themeSettings'
 
@@ -13,18 +12,9 @@ interface SettingsProps {
   setTheme: Dispatch<SetStateAction<Theme>>
   presets: Presets
   setPresets: Dispatch<SetStateAction<Presets>>
-  saveMsLeft: boolean
-  setSaveMsLeft: Dispatch<SetStateAction<boolean>>
 }
 
-export const Settings: FunctionComponent<SettingsProps> = ({
-  theme,
-  setTheme,
-  presets,
-  setPresets,
-  saveMsLeft,
-  setSaveMsLeft,
-}) => {
+export const Settings: FunctionComponent<SettingsProps> = ({ theme, setTheme, presets, setPresets }) => {
   const [isVisible, toggleIsVisible] = useReducer((prev) => !prev, false)
   const [updatedTheme, setUpdatedTheme] = useState(theme)
   const [updatedPresets, setUpdatedPresets] = useState(presets)
@@ -75,7 +65,6 @@ export const Settings: FunctionComponent<SettingsProps> = ({
               invalidPresets={invalidPresets}
             ></PresetsSettings>
             <ThemeSettings theme={updatedTheme} setTheme={setUpdatedTheme}></ThemeSettings>
-            <AutosaveSettings saveMsLeft={saveMsLeft} setSaveMsLeft={setSaveMsLeft}></AutosaveSettings>
           </div>
           <button
             type='button'
