@@ -18,8 +18,9 @@ function App() {
   const [theme, setTheme] = useLocalStorage<Theme>('theme', defaultTheme)
   const [activeMode, setActiveMode] = useLocalStorage<Mode>('activeMode', 'pomodoro')
   const [presets, setPresets] = useLocalStorage('presets', defaultPresets)
+  const totalMs = presets[activeMode]
 
-  const { msLeft, isRunning, totalMs, setTotalMs, resetTimer, triggerAction } = useTimer(presets[activeMode])
+  const { msLeft, isRunning, resetTimer, triggerAction } = useTimer(totalMs)
 
   const handleModeChange = useCallback(
     (mode: Mode) => {
@@ -36,8 +37,6 @@ function App() {
     document.title = getFormatedTime(msLeft)
   }, [msLeft])
 
-  useLayoutEffect(() => setTotalMs(presets[activeMode]), [setTotalMs, presets, activeMode])
-
   return (
     <main
       style={{ '--color-primary': theme.color, fontFamily: theme.font } as CustomCSS}
@@ -49,11 +48,11 @@ function App() {
       </div>
       <div onClick={triggerAction} className=''>
         {
-          <Timer
-            msLeft={msLeft}
-            isRunning={isRunning}
-            timeFraction={1 - Math.round((msLeft / totalMs) * 1000) / 1000}
-          ></Timer>
+        <Timer
+          msLeft={msLeft}
+          isRunning={isRunning}
+          timeFraction={1 - Math.round((msLeft / totalMs) * 1000) / 1000}
+        ></Timer>
         }
       </div>
       <div className='mt-auto lg:mt-0'>

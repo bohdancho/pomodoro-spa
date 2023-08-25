@@ -3,10 +3,9 @@ import { useCallback, useEffect, useLayoutEffect, useReducer, useState } from 'r
 const DEV_SPEED_UP = import.meta.env.DEV ? 1000 : 1
 const STEP_MS = 10
 
-export function useTimer(initTotalMs: number) {
-  const [totalMs, setTotalMs] = useState(initTotalMs)
+export function useTimer(totalMs: number) {
   const [isRunning, setIsRunning] = useState(false)
-  const [msLeft, dispatchMsLeft] = useReducer(msReducer, initTotalMs)
+  const [msLeft, dispatchMsLeft] = useReducer(msReducer, totalMs)
 
   const resetTimer = useCallback(() => {
     setIsRunning(false)
@@ -43,15 +42,14 @@ export function useTimer(initTotalMs: number) {
           return prevMsLeft
         }
 
-        const newMsLeft = prevMsLeft - STEP_MS * DEV_SPEED_UP
-        if (newMsLeft <= 0) {
+        const newMsLeft = Math.max(0, prevMsLeft - STEP_MS * DEV_SPEED_UP)
+        if (newMsLeft === 0) {
           setIsRunning(false)
-          return 0
         }
         return newMsLeft
       }
     }
   }
 
-  return { msLeft, isRunning, totalMs, setTotalMs, resetTimer, triggerAction }
+  return { msLeft, isRunning, resetTimer, triggerAction }
 }
