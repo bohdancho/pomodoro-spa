@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 
 import './App.tw.css'
@@ -16,8 +16,10 @@ const defaultPresets: Presets = {
 
 function App() {
   const [theme, setTheme] = useLocalStorage<Theme>('theme', defaultTheme)
-  const [activeMode, setActiveMode] = useLocalStorage<Mode>('activeMode', 'pomodoro')
+  const [activeMode, setActiveMode] = useLocalStorage<Mode>('active-mode', 'pomodoro')
   const [presets, setPresets] = useLocalStorage('presets', defaultPresets)
+  const [saveMsLeft, setSaveMsLeft] = useLocalStorage('save-time-left', false)
+
   const totalMs = presets[activeMode]
 
   const { msLeft, isRunning, resetTimer, triggerAction } = useTimer(totalMs)
@@ -47,16 +49,21 @@ function App() {
         <ModeTabs presets={presets} activeMode={activeMode} handleModeChange={handleModeChange}></ModeTabs>
       </div>
       <div onClick={triggerAction} className=''>
-        {
         <Timer
           msLeft={msLeft}
           isRunning={isRunning}
           timeFraction={1 - Math.round((msLeft / totalMs) * 1000) / 1000}
         ></Timer>
-        }
       </div>
       <div className='mt-auto lg:mt-0'>
-        <Settings theme={theme} setTheme={setTheme} presets={presets} setPresets={setPresets}></Settings>
+        <Settings
+          theme={theme}
+          setTheme={setTheme}
+          presets={presets}
+          setPresets={setPresets}
+          saveMsLeft={saveMsLeft}
+          setSaveMsLeft={setSaveMsLeft}
+        ></Settings>
       </div>
     </main>
   )
