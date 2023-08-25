@@ -41,7 +41,7 @@ function App() {
 
   return (
     <main
-      style={{ '--color-primary': theme.color, fontFamily: theme.font } as CustomCSS}
+      style={{ '--color-primary': theme.color, fontFamily: `${theme.font}, sans-serif` } as CustomCSS}
       className='flex h-screen w-screen flex-col items-center justify-center gap-[48px] bg-slate-800 pb-[7vh] pt-[5vh] text-blue-100 md:gap-0 md:pb-[5vh] md:pt-[4vh] lg:justify-between lg:gap-0 lg:py-[4vh]'
     >
       <h1 className='text-[32px] md:mb-[5vh] lg:mb-0'>pomodoro</h1>
